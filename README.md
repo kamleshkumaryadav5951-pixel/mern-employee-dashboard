@@ -133,9 +133,10 @@ GET    /api/dashboard/stats
 - start: `npm start`
 - add env vars from `.env.example`
 
-**frontend → Vercel**
+**frontend → Netlify**
 - root dir: `client`
-- framework: Vite
+- build command: `npm run build`
+- publish dir: `dist`
 - env var: `VITE_API_URL=https://your-api.onrender.com/api`
 
 ---
