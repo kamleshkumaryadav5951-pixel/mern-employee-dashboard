@@ -11,9 +11,8 @@ import Tasks from './pages/Tasks';
 import NotFound from './pages/NotFound';
 import { PageSpinner } from './components/common/Spinner';
 
-/**
- * ProtectedRoute — redirects to login if not authenticated
- */
+// wrapper component to protect routes
+// basically kicks you back to login if you don't have a token
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
   if (loading) return <PageSpinner />;
@@ -26,13 +25,13 @@ const AppRoutes = () => {
 
   return (
     <Routes>
-      {/* Auth routes */}
+      {/* auth routes - login and register */}
       <Route element={<AuthLayout />}>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Route>
 
-      {/* Protected dashboard routes */}
+      {/* all the actual dashboard pages - gotta be logged in for these */}
       <Route
         element={
           <ProtectedRoute>
@@ -45,7 +44,7 @@ const AppRoutes = () => {
         <Route path="/tasks" element={<Tasks />} />
       </Route>
 
-      {/* Redirects */}
+      {/* catch everything else and redirect or show 404 */}
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
       <Route path="*" element={<NotFound />} />
     </Routes>

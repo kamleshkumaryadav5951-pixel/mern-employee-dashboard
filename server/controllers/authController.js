@@ -2,28 +2,26 @@ const asyncHandler = require('express-async-handler');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
-/**
- * Generate a signed JWT for a given user ID
- */
+// helper to generate jwt token so we don't repeat this
+// expires in 7 days by default so users don't have to login constantly
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRE || '7d',
   });
 };
 
-/**
- * @desc    Register a new user
- * @route   POST /api/auth/register
- * @access  Public
- */
+// handle user registration
+// route: POST /api/auth/register
 const register = asyncHandler(async (req, res) => {
   const { name, email, password, role } = req.body;
 
+  // basic validation, shouldn't really hit this if frontend validation works
   if (!name || !email || !password) {
     res.status(400);
     throw new Error('Please provide name, email, and password');
   }
 
+  // check if email is already taken
   const userExists = await User.findOne({ email });
   if (userExists) {
     res.status(400);
@@ -45,11 +43,8 @@ const register = asyncHandler(async (req, res) => {
   });
 });
 
-/**
- * @desc    Login user
- * @route   POST /api/auth/login
- * @access  Public
- */
+// handle login
+// route: POST /api/auth/login
 const login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
@@ -58,6 +53,7 @@ const login = asyncHandler(async (req, res) => {
     throw new Error('Please provide email and password');
   }
 
+  // find user and explicitly select password since we set select: false in the model
   const user = await User.findOne({ email }).select('+password');
   if (!user || !(await user.matchPassword(password))) {
     res.status(401);
@@ -77,11 +73,8 @@ const login = asyncHandler(async (req, res) => {
   });
 });
 
-/**
- * @desc    Get current logged-in user profile
- * @route   GET /api/auth/me
- * @access  Private
- */
+// get current logged in user (used for page refreshes)
+// route: GET /api/auth/me
 const getMe = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 

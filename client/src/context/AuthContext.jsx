@@ -10,7 +10,8 @@ export const AuthProvider = ({ children }) => {
   });
   const [loading, setLoading] = useState(true);
 
-  // Verify token on mount
+  // on first load, check if we have a valid token in localStorage
+  // if yes, fetch user data to keep them logged in
   useEffect(() => {
     const verifyUser = async () => {
       const token = localStorage.getItem('token');

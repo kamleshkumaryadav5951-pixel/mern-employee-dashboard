@@ -29,6 +29,8 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // check if they missed any fields
     const errs = validate();
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
 
@@ -46,7 +48,7 @@ const Login = () => {
 
   return (
     <div className="bg-white/10 backdrop-blur-md rounded-3xl border border-white/20 shadow-2xl p-8">
-      {/* Logo */}
+      {/* main logo area */}
       <div className="text-center mb-8">
         <div className="w-14 h-14 rounded-2xl bg-primary-500 flex items-center justify-center mx-auto mb-4 shadow-glow">
           <RiBarChartBoxLine size={28} className="text-white" />
@@ -122,7 +124,7 @@ const Login = () => {
         </button>
       </form>
 
-      {/* Demo hint */}
+      {/* quick hint so people testing this don't have to guess the password lol */}
       <div className="mt-5 p-3 bg-white/5 rounded-xl border border-white/10 text-center">
         <p className="text-white/50 text-xs">
           Demo: <span className="text-white/80 font-medium">admin@dashboard.com</span> /{' '}

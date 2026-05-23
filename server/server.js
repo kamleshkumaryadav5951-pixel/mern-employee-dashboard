@@ -42,7 +42,8 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// ─── API Routes ──────────────────────────────────────────────────────────────
+// routes
+// mounting all our api endpoints here
 app.use('/api/auth', authRoutes);
 app.use('/api/employees', employeeRoutes);
 app.use('/api/tasks', taskRoutes);

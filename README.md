@@ -1,150 +1,69 @@
-# 🚀 EmpDash — Employee & Task Management Dashboard
+# mern-employee-dashboard
 
-<div align="center">
+A full stack employee and task management dashboard i built using the MERN stack. Basically think of it like a mini Jira/HR tool where you can manage employees, assign tasks and track progress with a kanban board.
 
-![EmpDash Banner](https://img.shields.io/badge/EmpDash-MERN%20Stack%20Dashboard-6366f1?style=for-the-badge&logo=react)
-
-[![React](https://img.shields.io/badge/React-18.x-61DAFB?style=flat-square&logo=react)](https://reactjs.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=flat-square&logo=node.js)](https://nodejs.org/)
-[![Express](https://img.shields.io/badge/Express-4.x-000000?style=flat-square&logo=express)](https://expressjs.com/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=flat-square&logo=mongodb)](https://mongodb.com/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.x-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
-[![JWT](https://img.shields.io/badge/Auth-JWT-000000?style=flat-square&logo=json-web-tokens)](https://jwt.io/)
-
-A **professional, production-ready** full-stack MERN Employee & Task Management Dashboard inspired by Jira, GoodDay, and modern HRMS systems. Built to demonstrate strong MERN fundamentals, clean architecture, and professional coding standards.
-
-</div>
+I built this to practice MERN and also have something good to show in interviews. Took me a while to get everything working together especially the JWT part lol.
 
 ---
 
-## ✨ Features
+## what it does
 
-### 🔐 Authentication System
-- Secure JWT-based register & login
-- Protected routes with automatic redirect
-- Persistent sessions via localStorage
-- Logout with full session cleanup
-
-### 📊 Dashboard
-- **4 live statistics cards** — Total/Active Employees, Pending/Completed Tasks
-- **Task Status Pie Chart** using Recharts
-- **Department Bar Chart** — employee distribution
-- **Recent Activity Feed** — latest tasks and newly added employees
-
-### 👥 Employee Management
-- Add, edit, delete employees
-- Search by name, email, or role
-- Filter by department and status
-- Paginated table (10/page)
-- Status badges: Active · Inactive · On Leave
-
-### 📋 Task Management (Kanban Board)
-- **3-column Kanban** — Todo | In Progress | Done
-- Create tasks with title, description, priority, due date
-- Assign tasks to employees
-- Inline status change from task cards
-- Priority levels: Low · Medium · High (color-coded)
-- Overdue date highlighting
-
-### 🎨 UI/UX
-- Collapsible sidebar navigation
-- Mobile-responsive with hamburger drawer
-- Toast notifications (react-hot-toast)
-- Loading spinners & states
-- Form validation with inline errors
-- Smooth animations & hover transitions
-- Glassmorphism auth pages
+- login/register with JWT auth (passwords are hashed with bcrypt)
+- dashboard with stats and charts (recharts)
+- manage employees — add, edit, delete, search, filter
+- task kanban board — todo, in progress, done
+- assign tasks to employees with priority and due date
+- mobile responsive, collapsible sidebar, toast notifications
 
 ---
 
-## 🛠️ Tech Stack
+## tech used
 
-| Layer | Technology |
-|---|---|
-| **Frontend** | React 18, Vite, Tailwind CSS 3 |
-| **Routing** | React Router v6 |
-| **HTTP Client** | Axios (with JWT interceptors) |
-| **Charts** | Recharts |
-| **Icons** | React Icons (Remix Icons) |
-| **Notifications** | React Hot Toast |
-| **Backend** | Node.js, Express.js |
-| **Database** | MongoDB + Mongoose |
-| **Auth** | JWT + bcryptjs |
-| **Dev Tools** | Nodemon, Morgan |
+**Frontend**
+- React + Vite
+- Tailwind CSS
+- React Router v6
+- Axios
+- Recharts (for the dashboard charts)
+- React Icons
+- React Hot Toast
+
+**Backend**
+- Node.js + Express
+- MongoDB + Mongoose
+- JWT for auth
+- bcryptjs for hashing passwords
 
 ---
 
-## 📁 Project Structure
+## folder structure
 
 ```
 mern-employee-dashboard/
-├── client/                     # React frontend (Vite)
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── common/         # Button, Input, Modal, Badge, Spinner, Avatar
-│   │   │   ├── layout/         # Sidebar, Navbar
-│   │   │   ├── dashboard/      # StatsCard, TaskChart, ActivityFeed
-│   │   │   ├── employees/      # EmployeeTable, EmployeeForm
-│   │   │   └── tasks/          # KanbanColumn, TaskCard, TaskForm
-│   │   ├── context/
-│   │   │   └── AuthContext.jsx # Auth state, JWT persistence
-│   │   ├── layouts/
-│   │   │   ├── AuthLayout.jsx  # Login/Register wrapper
-│   │   │   └── DashboardLayout.jsx
-│   │   ├── pages/
-│   │   │   ├── Login.jsx
-│   │   │   ├── Register.jsx
-│   │   │   ├── Dashboard.jsx
-│   │   │   ├── Employees.jsx
-│   │   │   ├── Tasks.jsx
-│   │   │   └── NotFound.jsx
-│   │   ├── services/           # Axios API service layer
-│   │   └── utils/              # helpers.js (formatters, color utils)
-│   └── package.json
+├── server/
+│   ├── config/         → db connection
+│   ├── controllers/    → auth, employee, task, dashboard logic
+│   ├── middleware/     → jwt verify, error handler
+│   ├── models/         → User, Employee, Task
+│   ├── routes/         → all api routes
+│   ├── scripts/        → seed script for demo data
+│   └── server.js
 │
-└── server/                     # Node.js + Express backend
-    ├── config/
-    │   └── db.js               # MongoDB connection
-    ├── controllers/
-    │   ├── authController.js
-    │   ├── employeeController.js
-    │   ├── taskController.js
-    │   └── dashboardController.js
-    ├── middleware/
-    │   ├── authMiddleware.js    # JWT protect + adminOnly
-    │   └── errorMiddleware.js  # Global error handler
-    ├── models/
-    │   ├── User.js
-    │   ├── Employee.js
-    │   └── Task.js
-    ├── routes/
-    │   ├── authRoutes.js
-    │   ├── employeeRoutes.js
-    │   ├── taskRoutes.js
-    │   └── dashboardRoutes.js
-    ├── scripts/
-    │   └── seedData.js         # Demo data seeder
-    ├── server.js
-    └── package.json
+└── client/
+    └── src/
+        ├── components/ → common/, layout/, dashboard/, employees/, tasks/
+        ├── context/    → AuthContext
+        ├── layouts/    → AuthLayout, DashboardLayout
+        ├── pages/      → Login, Register, Dashboard, Employees, Tasks
+        ├── services/   → api calls
+        └── utils/      → helper functions
 ```
 
 ---
 
-## 🚀 Getting Started
+## how to run locally
 
-### Prerequisites
-- Node.js >= 18
-- MongoDB Atlas account (or local MongoDB)
-- Git
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/kamleshkumaryadav5951-pixel/mern-employee-dashboard.git
-cd mern-employee-dashboard
-```
-
-### 2. Backend Setup
+### backend
 
 ```bash
 cd server
@@ -152,131 +71,91 @@ npm install
 cp .env.example .env
 ```
 
-Edit `server/.env` with your values:
+fill in your `.env` (see `.env.example` for what's needed — basically mongo uri, jwt secret and port)
 
-```env
-PORT=5000
-MONGO_URI=mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/employee-dashboard?retryWrites=true&w=majority
-JWT_SECRET=your_super_secret_key_here
-JWT_EXPIRE=7d
-NODE_ENV=development
-CLIENT_URL=http://localhost:5173
-```
-
-Seed the database with demo data:
-
+seed sample data:
 ```bash
 npm run seed
 ```
 
-Start the backend:
-
+start server:
 ```bash
 npm run dev
 ```
 
-The API will be running at `http://localhost:5000`
-
-### 3. Frontend Setup
+### frontend
 
 ```bash
-cd ../client
+cd client
 npm install
 cp .env.example .env
 ```
 
-Edit `client/.env`:
-
-```env
-VITE_API_URL=http://localhost:5000/api
-```
-
-Start the frontend:
+set `VITE_API_URL` in `.env` to your backend url (e.g. `http://localhost:8000/api`)
 
 ```bash
 npm run dev
 ```
 
-The app will be running at `http://localhost:5173`
+open http://localhost:5173
+
+**demo login:** `admin@dashboard.com` / `admin123`
 
 ---
 
-## 🔑 Demo Credentials
+## api endpoints
 
-After running the seed script:
+```
+POST   /api/auth/register
+POST   /api/auth/login
+GET    /api/auth/me
 
-| Field | Value |
-|---|---|
-| Email | `admin@dashboard.com` |
-| Password | `admin123` |
+GET    /api/employees         → supports ?search= &department= &status= &page= &limit=
+POST   /api/employees
+PUT    /api/employees/:id
+DELETE /api/employees/:id
 
----
+GET    /api/tasks             → supports ?status= &priority= &assignedTo=
+POST   /api/tasks
+PUT    /api/tasks/:id
+DELETE /api/tasks/:id
 
-## 📡 API Endpoints
-
-### Auth
-| Method | Endpoint | Description |
-|---|---|---|
-| `POST` | `/api/auth/register` | Register new user |
-| `POST` | `/api/auth/login` | Login + get JWT |
-| `GET` | `/api/auth/me` | Get current user |
-
-### Employees
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/api/employees` | List (search, filter, paginate) |
-| `POST` | `/api/employees` | Create employee |
-| `PUT` | `/api/employees/:id` | Update employee |
-| `DELETE` | `/api/employees/:id` | Delete employee |
-
-### Tasks
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/api/tasks` | List tasks (filterable) |
-| `POST` | `/api/tasks` | Create task |
-| `PUT` | `/api/tasks/:id` | Update task/status |
-| `DELETE` | `/api/tasks/:id` | Delete task |
-
-### Dashboard
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/api/dashboard/stats` | Stats, charts, activity |
+GET    /api/dashboard/stats
+```
 
 ---
 
-## 🌐 Deployment
+## deployment
 
-### Frontend → Vercel
+**backend → Render**
+- root dir: `server`
+- build: `npm install`
+- start: `npm start`
+- add env vars from `.env.example`
 
-1. Push to GitHub
-2. Import project in [vercel.com](https://vercel.com)
-3. Set root directory to `client`
-4. Add env var: `VITE_API_URL=https://your-backend.onrender.com/api`
-5. Deploy
-
-### Backend → Render
-
-1. Create new **Web Service** on [render.com](https://render.com)
-2. Set root directory to `server`
-3. Build command: `npm install`
-4. Start command: `npm start`
-5. Add all environment variables from `.env.example`
+**frontend → Vercel**
+- root dir: `client`
+- framework: Vite
+- env var: `VITE_API_URL=https://your-api.onrender.com/api`
 
 ---
 
-## 🧑‍💻 Author
+## things i want to add later
 
-**Kamlesh Kumar Yadav**
-- GitHub: [@kamleshkumaryadav5951-pixel](https://github.com/kamleshkumaryadav5951-pixel)
-
----
-
-## 📝 License
-
-This project is licensed under the [MIT License](LICENSE).
+- drag and drop between kanban columns
+- dark mode
+- role based access (admin vs employee)
+- export to csv
+- profile page with avatar upload
 
 ---
 
-<div align="center">
-Made with ❤️ using the MERN Stack
-</div>
+## screenshots
+
+> coming soon
+
+---
+
+made by **Kamlesh Kumar Yadav**
+github: [@kamleshkumaryadav5951-pixel](https://github.com/kamleshkumaryadav5951-pixel)
+email: kamleshkumaryadav970@gmail.com
