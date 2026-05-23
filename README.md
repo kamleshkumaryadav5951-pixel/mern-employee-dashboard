@@ -5,7 +5,7 @@ A full stack employee and task management dashboard i built using the MERN stack
 I built this to practice MERN and also have something good to show in interviews. Took me a while to get everything working together especially the JWT part lol.
 
 ---
-
+🟢Live Demo : https://mern-employee-dashboard-2fvl.vercel.app
 ## what it does
 
 - login/register with JWT auth (passwords are hashed with bcrypt)
@@ -151,8 +151,11 @@ GET    /api/dashboard/stats
 ---
 
 ## screenshots
+<img width="1470" height="840" alt="Screenshot 2026-05-23 at 5 05 35 PM" src="https://github.com/user-attachments/assets/c290bfb7-a015-4e3b-a90f-01456bc3a11f" />
+<img width="1470" height="841" alt="Screenshot 2026-05-23 at 5 06 13 PM" src="https://github.com/user-attachments/assets/84ec6131-9d8b-4063-a950-512c594e7be3" />
+<img width="1470" height="840" alt="Screenshot 2026-05-23 at 5 05 47 PM" src="https://github.com/user-attachments/assets/4340df0c-5210-4262-bbe2-42a51dc9e03f" />
 
-> coming soon
+
 
 ---
 
