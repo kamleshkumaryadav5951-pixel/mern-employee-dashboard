@@ -1,0 +1,16 @@
+# Render Deployment Configuration
+# This file documents Render settings for the backend API
+
+# Service Type: Web Service
+# Runtime: Node
+# Build Command: npm install
+# Start Command: npm start
+# Root Directory: server
+
+# Environment Variables to set in Render Dashboard:
+# PORT=10000
+# MONGO_URI=<your-mongodb-atlas-uri>
+# JWT_SECRET=<your-strong-secret>
+# JWT_EXPIRE=7d
+# NODE_ENV=production
+# CLIENT_URL=<your-vercel-frontend-url>
