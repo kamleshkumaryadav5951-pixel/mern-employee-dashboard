@@ -66,7 +66,7 @@ mern-employee-dashboard/
 ### backend
 
 ```bash
-cd server
+cd server 
 npm install
 cp .env.example .env
 ```
@@ -146,7 +146,7 @@ GET    /api/dashboard/stats
 - dark mode
 - role based access (admin vs employee)
 - export to csv
-- profile page with avatar upload
+- profile page with avatar upload .
 
 ---
 
