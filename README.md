@@ -1,4 +1,4 @@
-# mern-employee-dashboard
+# mern-employee-dashboard.      
 
 A full stack employee and task management dashboard i built using the MERN stack. Basically think of it like a mini Jira/HR tool where you can manage employees, assign tasks and track progress with a kanban board.
 
